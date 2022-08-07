@@ -73,6 +73,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/topCatRecView"
             android:layout_width="377dp"
             android:layout_height="191dp"
             android:layout_marginStart="4dp"
