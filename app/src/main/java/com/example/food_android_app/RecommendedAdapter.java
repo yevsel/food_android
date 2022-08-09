@@ -11,12 +11,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
-public class TopCategoriesAdapter extends RecyclerView.Adapter<TopCategoriesAdapter.ViewHolder> {
-    private ArrayList<TopCategoriesContainer> container = new ArrayList<>();
+public class RecommendedAdapter extends RecyclerView.Adapter<RecommendedAdapter.ViewHolder> {
+    private ArrayList<RecommendedContainer> container = new ArrayList<>();
+    private Context context;
 
-    public void setContainer(ArrayList<TopCategoriesContainer> container) {
+    public RecommendedAdapter(Context context) {
+        this.context=context;
+    }
+
+    public void setContainer(ArrayList<RecommendedContainer> container) {
         this.container = container;
     }
 
@@ -30,12 +37,12 @@ public class TopCategoriesAdapter extends RecyclerView.Adapter<TopCategoriesAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Uri uri = Uri.parse(container.get(position).getImgUrl());
-        holder.imgView.setImageURI(uri);
+        Uri url = Uri.parse(container.get(position).getImgUrl());
+        //Using Glide
+        Glide.with(context).load(url).centerCrop().into(holder.imgView);
 
-        holder.txtView.setText(container.get(position).getName());
-
-
+        String name = container.get(position).getName();
+        holder.txtView.setText(name);
     }
 
     @Override

@@ -4,8 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:fillViewport="true">
+    android:layout_marginBottom="20dp"
+    android:background="#fff"
+    android:fillViewport="true"
+    android:padding="0dp"
+    tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,58 +17,51 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="1dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="16dp"
-            android:background="@drawable/ic_stat_name"
-            android:backgroundTint="@color/black"
-            app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName"
-            app:layout_constraintVertical_bias="1.0">
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <EditText
-            android:id="@+id/editTextTextPersonName"
-            android:layout_width="296dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/border_radius"
-            android:ems="10"
-            android:hint="Search for food"
-            android:inputType="textPersonName"
-            android:padding="10dp"
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/constraintLayout"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/editTextTextPersonName2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/border_radius"
+                android:ems="10"
+                android:hint="Search for food"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:textSize="18sp"
+                tools:layout_marginRight="10dp" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:text="Top Categories"
+            android:text="Recommended"
             android:textColor="#000"
             android:textSize="30sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/constraintLayout"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+            app:layout_constraintStart_toStartOf="@+id/linearLayout"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="39dp"
+            android:layout_height="38dp"
             android:layout_marginStart="104dp"
             android:background="@drawable/filter"
             android:backgroundTint="#ccc"
             app:layout_constraintBottom_toBottomOf="@+id/textView2"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/textView2"
             app:layout_constraintTop_toTopOf="@+id/textView2"
             app:layout_constraintVertical_bias="0.0">
@@ -73,15 +69,61 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/topCatRecView"
-            android:layout_width="377dp"
-            android:layout_height="191dp"
+            android:id="@+id/recommendedView"
+            android:layout_width="367dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout2"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Local Dishes"
+            android:textColor="#000"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/recommendedView"
+            app:layout_constraintTop_toBottomOf="@+id/recommendedView" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/localRecView"
+            android:layout_width="368dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/recommendedView"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Lunch"
+            android:textColor="#000"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/localRecView"
+            app:layout_constraintTop_toBottomOf="@+id/localRecView" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lunchRecView"
+            android:layout_width="368dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/localRecView"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

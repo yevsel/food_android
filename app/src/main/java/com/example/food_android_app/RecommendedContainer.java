@@ -1,10 +1,10 @@
 package com.example.food_android_app;
 
-public class TopCategoriesContainer {
+public class RecommendedContainer {
     private String imgUrl;
     private String name;
 
-    public TopCategoriesContainer(String imgUrl, String name) {
+    public RecommendedContainer(String imgUrl, String name) {
         this.imgUrl = imgUrl;
         this.name = name;
     }
