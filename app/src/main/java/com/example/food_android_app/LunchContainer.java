@@ -1,11 +1,13 @@
 package com.example.food_android_app;
 
 public class LunchContainer {
+    private String id;
     private String lunchName;
     private String lunchPrice;
     private String lunchImage;
 
-    public LunchContainer(String lunchImage, String lunchName, String lunchPrice) {
+    public LunchContainer(String lunchImage, String lunchName, String lunchPrice, String id) {
+        this.id = id;
         this.lunchName = lunchName;
         this.lunchPrice = lunchPrice;
         this.lunchImage = lunchImage;
@@ -35,12 +37,23 @@ public class LunchContainer {
         this.lunchImage = lunchImage;
     }
 
+    public String getId() {
+        return id;
+    }
+
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "LunchContainer{" +
-                "lunchName='" + lunchName + '\'' +
+                "id='" + id + '\'' +
+                ", lunchName='" + lunchName + '\'' +
                 ", lunchPrice='" + lunchPrice + '\'' +
                 ", lunchImage='" + lunchImage + '\'' +
                 '}';
     }
+
 }

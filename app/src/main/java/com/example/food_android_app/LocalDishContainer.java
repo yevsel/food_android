@@ -1,9 +1,11 @@
 package com.example.food_android_app;
 
 public class LocalDishContainer {
-    String name;
-    String price;
-    String imgUrl;
+    private String id;
+    private String name;
+    private String price;
+    private String imgUrl;
+
 
     public String getImgUrl() {
         return imgUrl;
@@ -14,7 +16,8 @@ public class LocalDishContainer {
     }
 
 
-    public LocalDishContainer(String imgUrl,String name, String price) {
+    public LocalDishContainer(String imgUrl,String name, String price,String id) {
+        this.id = id;
         this.name = name;
         this.price = price;
         this.imgUrl = imgUrl;
@@ -36,11 +39,21 @@ public class LocalDishContainer {
         this.price = price;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
-        return "LocalDIshContainer{" +
-                "name='" + name + '\'' +
+        return "LocalDishContainer{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
                 ", price='" + price + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
                 '}';
     }
 }

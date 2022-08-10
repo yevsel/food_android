@@ -1,11 +1,13 @@
 package com.example.food_android_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -42,7 +44,19 @@ public class LocalDishesAdapter extends RecyclerView.Adapter<LocalDishesAdapter.
         Glide.with(context).load(uri).centerCrop().into(holder.localImage);
 
         holder.name.setText(container.get(position).getName());
-        holder.price.setText(container.get(position).getPrice());
+        String price = "GHs "+container.get(position).getPrice()+".00";
+        holder.price.setText(price);
+
+        //OnClick
+        holder.viewDetailBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,ViewDetails.class);
+                //Sending the ID to the next page
+                intent.putExtra("ID",container.get(position).getId());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -54,6 +68,7 @@ public class LocalDishesAdapter extends RecyclerView.Adapter<LocalDishesAdapter.
         private ImageView localImage;
         private TextView name;
         private TextView price;
+        private RelativeLayout viewDetailBtn;
         private ConstraintLayout parent;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -62,6 +77,7 @@ public class LocalDishesAdapter extends RecyclerView.Adapter<LocalDishesAdapter.
            name = (TextView) itemView.findViewById(R.id.localName);
            price = (TextView) itemView.findViewById(R.id.localPrice);
            parent = (ConstraintLayout) itemView.findViewById(R.id.parent);
+           viewDetailBtn = (RelativeLayout) itemView.findViewById(R.id.viewItemBtn);
 
         }
     }

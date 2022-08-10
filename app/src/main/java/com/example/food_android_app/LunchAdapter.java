@@ -1,11 +1,13 @@
 package com.example.food_android_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -43,7 +45,18 @@ public class LunchAdapter extends RecyclerView.Adapter<LunchAdapter.ViewHolder>{
         Glide.with(context).load(uri).centerCrop().into(holder.lunchImage);
 
         holder.lunchName.setText(lunchContainer.get(position).getLunchName());
-        holder.lunchPrice.setText(lunchContainer.get(position).getLunchPrice());
+        String price = "GHs "+lunchContainer.get(position).getLunchPrice()+".00";
+        holder.lunchPrice.setText(price);
+
+        //Onclick
+        holder.viewDetailBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,ViewDetails.class);
+                intent.putExtra("ID",lunchContainer.get(position).getId());
+                context.startActivity(intent);
+            }
+        });
 
     }
 
@@ -57,11 +70,13 @@ public class LunchAdapter extends RecyclerView.Adapter<LunchAdapter.ViewHolder>{
         private ImageView lunchImage;
         private TextView lunchPrice;
         private TextView lunchName;
+        private RelativeLayout viewDetailBtn;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             lunchImage = (ImageView) itemView.findViewById(R.id.localImage);
             lunchPrice = (TextView) itemView.findViewById(R.id.localPrice);
             lunchName = (TextView) itemView.findViewById(R.id.localName);
+            viewDetailBtn = (RelativeLayout) itemView.findViewById(R.id.viewItemBtn);
         }
     }
 }
