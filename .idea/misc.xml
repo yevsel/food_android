@@ -4,8 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/user/Desktop/food_android/app/src/main/res/drawable/border_radius.xml" value="0.1" />
-        <entry key="..\:/Users/user/Desktop/food_android/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/user/Desktop/food_android/app/src/main/res/drawable/ic_add_basket.xml" value="0.134" />
+        <entry key="..\:/Users/user/Desktop/food_android/app/src/main/res/drawable/ic_basket.xml" value="0.134" />
+        <entry key="..\:/Users/user/Desktop/food_android/app/src/main/res/layout/activity_basket.xml" value="0.1393758016246259" />
+        <entry key="..\:/Users/user/Desktop/food_android/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/user/Desktop/food_android/app/src/main/res/layout/activity_view_details.xml" value="0.25" />
+        <entry key="..\:/Users/user/Desktop/food_android/app/src/main/res/layout/basket_layout.xml" value="0.25" />
         <entry key="..\:/Users/user/Desktop/food_android/app/src/main/res/layout/localdish_layout.xml" value="0.33" />
         <entry key="..\:/Users/user/Desktop/food_android/app/src/main/res/layout/top_category_layout.xml" value="0.5" />
       </map>

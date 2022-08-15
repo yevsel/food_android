@@ -1,10 +1,13 @@
 package com.example.food_android_app;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -23,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recommendedView;
     private RecyclerView localRecView;
+    private ConstraintLayout goToBasket;
 
 
     @Override
@@ -31,10 +35,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        System.out.println("Hello from Ghana");
+        //Container for basket
+        ArrayList<String> basketContainer = new ArrayList<>();
 
-
-
+        //GO to Basket
+        goToBasket = (ConstraintLayout) findViewById(R.id.goToBasket);
+        goToBasket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, BasketActivity.class);
+                intent.putStringArrayListExtra("basketItems",(ArrayList<String>) basketContainer);
+                startActivity(intent);
+            }
+        });
 
         ArrayList<RecommendedContainer> container = new ArrayList<>();
         container.add(new RecommendedContainer("https://travelfoodatlas.com/wp-content/uploads/2022/07/Ghana-Waakye.jpg.webp","Waakye"));
@@ -59,13 +72,13 @@ public class MainActivity extends AppCompatActivity {
         //Local dishes
         localRecView = (RecyclerView) findViewById(R.id.localRecView);
         //local dish adapter
-        LocalDishesAdapter localDishesAdapter = new LocalDishesAdapter(this);
+        LocalDishesAdapter localDishesAdapter = new LocalDishesAdapter(this,basketContainer);
         localRecView.setAdapter(localDishesAdapter);
         localDishesAdapter.setContainer(localContainer);
         localRecView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
 
         //Lunch
-        LunchAdapter lunchAdapter = new LunchAdapter(this);
+        LunchAdapter lunchAdapter = new LunchAdapter(this, basketContainer);
         //Set Container
         ArrayList<LunchContainer> lunchContainer = new ArrayList<>();
         lunchContainer.add(new LunchContainer("https://www.megachicken.com.ng/wp-content/uploads/2019/12/Fried-rice-Vegetage-Salad-and-roasted-Chicken-scaled.jpg","FRIED RICE WITH FRIED CHICKEN","20","62eb13f2a4ee7f69ce86fba9"));
@@ -86,8 +99,6 @@ public class MainActivity extends AppCompatActivity {
         lunchRecView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
 
 
-        //Get request
-        OkHttpClient client = new OkHttpClient();
 
     }
 

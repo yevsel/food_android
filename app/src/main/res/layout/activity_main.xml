@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="20dp"
+
     android:background="#fff"
     android:fillViewport="true"
     tools:context=".MainActivity">
@@ -16,15 +16,40 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="1dp">
 
+        <RelativeLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/goToBasket"
+                android:layout_width="44dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="15dp"
+                android:background="@drawable/ic_basket"
+
+                tools:layout_gravity="end">
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
+
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="70dp"
+            android:descendantFocusability="beforeDescendants"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
             <EditText
                 android:id="@+id/editTextTextPersonName2"
@@ -34,7 +59,9 @@
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/border_radius"
-                android:ems="10"
+                android:elevation="3dp"
+                android:focusedByDefault="false"
+
                 android:hint="Search for food"
                 android:inputType="textPersonName"
                 android:padding="10dp"
@@ -112,4 +139,6 @@
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </ScrollView>

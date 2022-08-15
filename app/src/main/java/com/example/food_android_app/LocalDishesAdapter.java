@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -22,8 +23,10 @@ import java.util.ArrayList;
 public class LocalDishesAdapter extends RecyclerView.Adapter<LocalDishesAdapter.ViewHolder> {
     ArrayList<LocalDishContainer> container = new ArrayList<>();
     private Context context;
-    public LocalDishesAdapter(Context context) {
+    private ArrayList basketContainer;
+    public LocalDishesAdapter(Context context,ArrayList basketContainer) {
         this.context = context;
+        this.basketContainer=basketContainer;
     }
 
     public void setContainer(ArrayList<LocalDishContainer> container) {
@@ -44,17 +47,26 @@ public class LocalDishesAdapter extends RecyclerView.Adapter<LocalDishesAdapter.
         Glide.with(context).load(uri).centerCrop().into(holder.localImage);
 
         holder.name.setText(container.get(position).getName());
-        String price = "GHs "+container.get(position).getPrice()+".00";
+        String price = "GH₵ "+container.get(position).getPrice()+".00";
         holder.price.setText(price);
 
-        //OnClick
-        holder.viewDetailBtn.setOnClickListener(new View.OnClickListener() {
+        //OnClick of parent
+        holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context,ViewDetails.class);
                 //Sending the ID to the next page
-                intent.putExtra("ID",container.get(position).getId());
+                intent.putExtra("ID",container.get(position).getImgUrl());
                 context.startActivity(intent);
+            }
+        });
+
+        //Onclick of add Button
+        holder.addToBasktet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                basketContainer.add(container.get(position).getImgUrl());
+                //Toast.makeText(context, container.get(position).getName()+" clicked", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -68,7 +80,7 @@ public class LocalDishesAdapter extends RecyclerView.Adapter<LocalDishesAdapter.
         private ImageView localImage;
         private TextView name;
         private TextView price;
-        private RelativeLayout viewDetailBtn;
+        private RelativeLayout addToBasktet;
         private ConstraintLayout parent;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -77,7 +89,7 @@ public class LocalDishesAdapter extends RecyclerView.Adapter<LocalDishesAdapter.
            name = (TextView) itemView.findViewById(R.id.localName);
            price = (TextView) itemView.findViewById(R.id.localPrice);
            parent = (ConstraintLayout) itemView.findViewById(R.id.parent);
-           viewDetailBtn = (RelativeLayout) itemView.findViewById(R.id.viewItemBtn);
+           addToBasktet = (RelativeLayout) itemView.findViewById(R.id.addToBasket);
 
         }
     }

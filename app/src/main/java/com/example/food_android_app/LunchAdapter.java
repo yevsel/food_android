@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -20,8 +21,10 @@ import java.util.ArrayList;
 public class LunchAdapter extends RecyclerView.Adapter<LunchAdapter.ViewHolder>{
     ArrayList<LunchContainer> lunchContainer = new ArrayList<>();
     private Context context;
-    public LunchAdapter(Context context) {
+    private ArrayList basketContainer;
+    public LunchAdapter(Context context,ArrayList basketContainer) {
         this.context=context;
+        this.basketContainer=basketContainer;
     }
 
     //Setter
@@ -45,16 +48,23 @@ public class LunchAdapter extends RecyclerView.Adapter<LunchAdapter.ViewHolder>{
         Glide.with(context).load(uri).centerCrop().into(holder.lunchImage);
 
         holder.lunchName.setText(lunchContainer.get(position).getLunchName());
-        String price = "GHs "+lunchContainer.get(position).getLunchPrice()+".00";
+        String price = "GH₵ "+lunchContainer.get(position).getLunchPrice()+".00";
         holder.lunchPrice.setText(price);
 
-        //Onclick
-        holder.viewDetailBtn.setOnClickListener(new View.OnClickListener() {
+        //Onclick of parent
+        holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context,ViewDetails.class);
                 intent.putExtra("ID",lunchContainer.get(position).getId());
                 context.startActivity(intent);
+            }
+        });
+
+        holder.addToBasket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                basketContainer.add(lunchContainer.get(position).getLunchImage());
             }
         });
 
@@ -70,13 +80,15 @@ public class LunchAdapter extends RecyclerView.Adapter<LunchAdapter.ViewHolder>{
         private ImageView lunchImage;
         private TextView lunchPrice;
         private TextView lunchName;
-        private RelativeLayout viewDetailBtn;
+        private RelativeLayout addToBasket;
+        private ConstraintLayout parent;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             lunchImage = (ImageView) itemView.findViewById(R.id.localImage);
             lunchPrice = (TextView) itemView.findViewById(R.id.localPrice);
             lunchName = (TextView) itemView.findViewById(R.id.localName);
-            viewDetailBtn = (RelativeLayout) itemView.findViewById(R.id.viewItemBtn);
+            addToBasket = (RelativeLayout) itemView.findViewById(R.id.addToBasket);
+            parent = (ConstraintLayout) itemView.findViewById(R.id.parent);
         }
     }
 }
