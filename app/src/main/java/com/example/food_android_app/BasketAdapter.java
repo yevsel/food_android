@@ -1,7 +1,6 @@
 package com.example.food_android_app;
 
 import android.content.Context;
-import android.media.Image;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,8 +39,17 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Uri uri = Uri.parse(basketItems.get(position));
+
+        String[] basketItemsToSplit = basketItems.get(position).split(",",100);
+
+        Uri uri = Uri.parse(basketItemsToSplit[0]);
         Glide.with(context).load(uri).centerCrop().into(holder.basketItemImage);
+
+        holder.basketItemName.setText(basketItemsToSplit[1]);
+        holder.basketItemPrice.setText("GHs "+basketItemsToSplit[2]);
+
+
+
     }
 
     @Override

@@ -1,11 +1,13 @@
 package com.example.food_android_app;
 
-public class BasketContainer {
+
+
+public class BasketContainerClass  {
     String basketItemImageUrl;
     String basketItemName;
     String basketItemPrice;
 
-    public BasketContainer(String basketItemImageUrl, String basketItemName, String basketItemPrice) {
+    public BasketContainerClass(String basketItemImageUrl, String basketItemName, String basketItemPrice) {
         this.basketItemImageUrl = basketItemImageUrl;
         this.basketItemName = basketItemName;
         this.basketItemPrice = basketItemPrice;

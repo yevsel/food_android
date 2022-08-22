@@ -65,8 +65,9 @@ public class LocalDishesAdapter extends RecyclerView.Adapter<LocalDishesAdapter.
         holder.addToBasktet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                basketContainer.add(container.get(position).getImgUrl());
-                //Toast.makeText(context, container.get(position).getName()+" clicked", Toast.LENGTH_SHORT).show();
+                basketContainer.add(container.get(position).getImgUrl()+","+container.get(position).getName()+","+container.get(position).getPrice());
+
+                Toast.makeText(context, container.get(position).getName()+" added to basket", Toast.LENGTH_SHORT).show();
             }
         });
     }

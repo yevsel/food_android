@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -64,7 +65,8 @@ public class LunchAdapter extends RecyclerView.Adapter<LunchAdapter.ViewHolder>{
         holder.addToBasket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                basketContainer.add(lunchContainer.get(position).getLunchImage());
+                basketContainer.add(lunchContainer.get(position).getLunchImage()+","+lunchContainer.get(position).getLunchName()+","+lunchContainer.get(position).getLunchPrice());
+                Toast.makeText(context, lunchContainer.get(position).getLunchName()+ " added to basket", Toast.LENGTH_SHORT).show();
             }
         });
 
